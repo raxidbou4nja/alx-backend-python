@@ -4,5 +4,5 @@
 """
 
 
-def floor_number(n: float) -> int:
+def floor(n: float) -> int:
     return int(n)
