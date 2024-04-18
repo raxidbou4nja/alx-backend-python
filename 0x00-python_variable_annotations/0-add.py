@@ -4,5 +4,5 @@
 """
 
 
-def add(number1: float, number2: float) -> float:
-    return (number2 + number2)
+def add(a: float, b: float) -> float:
+    return (a + b)
