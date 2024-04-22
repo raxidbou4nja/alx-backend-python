@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
-""" multiple coroutines  """
+""" coroutines at the same time with async """
 import asyncio
 from typing import List
-from random_async import wait_random
+
+
+wait_random = __import__('0-basic_async_syntax').wait_random
 
 
 async def wait_n(n: int, max_delay: int) -> List[float]:
-    """
-    Asynchronous function that spawns n instances of
-    wait_random coroutine with the specified max_delay
-    and returns the list of delays in ascending order.
-    """
-    delays = []
-    tasks = [wait_random(max_delay) for _ in range(n)]
-    for task in asyncio.as_completed(tasks):
-        delay = await task
-        delays.append(delay)
-    return delays
+    """ coroutines at the same time with async """
+    delays: List[float] = []
+    all_delays: List[float] = []
+    for i in range(n):
+        delays.append(wait_random(max_delay))
+    for delay in asyncio.as_completed(delays):
+        earliest_result = await delay
+        all_delays.append(earliest_result)
+    return all_delays
