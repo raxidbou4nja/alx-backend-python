@@ -19,11 +19,13 @@ class TestGithubOrgClient(unittest.TestCase):
         """Test GithubOrgClient.org method."""
         test_class = GithubOrgClient(org_name)
         test_class.org()
-        mock_get_json.assert_called_once_with(f'https://api.github.com/orgs/{org_name}')
+        mock_get_json
+        .assert_called_once_with(f'https://api.github.com/orgs/{org_name}')
 
     def test_public_repos_url(self):
         """Test _public_repos_url property."""
-        with patch('client.GithubOrgClient.org', new_callable=PropertyMock) as mock_org:
+        with patch('client.GithubOrgClient.org',
+                   new_callable=PropertyMock) as mock_org:
             mock_org.return_value = {"repos_url": "World"}
             test_class = GithubOrgClient('test')
             result = test_class._public_repos_url
@@ -35,7 +37,8 @@ class TestGithubOrgClient(unittest.TestCase):
         json_payload = [{"name": "Google"}, {"name": "Twitter"}]
         mock_get_json.return_value = json_payload
 
-        with patch('client.GithubOrgClient._public_repos_url', new_callable=PropertyMock) as mock_repos_url:
+        with patch('client.GithubOrgClient._public_repos_url',
+                   new_callable=PropertyMock) as mock_repos_url:
             mock_repos_url.return_value = "hello/world"
             test_class = GithubOrgClient('test')
             result = test_class.public_repos()
