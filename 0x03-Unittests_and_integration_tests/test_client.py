@@ -93,3 +93,8 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         self.assertEqual(test_class.public_repos(
             "apache-2.0"), self.apache2_repos)
         self.mock.assert_called()
+
+    @classmethod
+    def tearDownClass(cls):
+        """Tear down after Integration test."""
+        cls.get_patcher.stop()
