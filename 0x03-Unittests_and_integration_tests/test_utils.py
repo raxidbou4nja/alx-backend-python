@@ -6,7 +6,7 @@ from typing import Dict, Tuple, Union
 from unittest.mock import patch, Mock
 from parameterized import parameterized
 
-from my_utils import (
+from utils import (
     access_nested_map,
     get_json,
     memoize,
